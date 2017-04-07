@@ -54,8 +54,8 @@ public class SimpleSidebar extends JavaPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(command.getName().equalsIgnoreCase("simplesidebar")){
-            if(args== new String[]{"reload"}){
-                if(sender.hasPermission("simplesidebar.reload")) {
+            if(args.length!=0){
+                if(args[0].equalsIgnoreCase("reload")&&sender.hasPermission("simplesidebar.reload")) {
                     timer.stop();
                     config.reload();
                     for (Player player : Bukkit.getOnlinePlayers()) {
