@@ -55,17 +55,19 @@ public class SimpleSidebar extends JavaPlugin implements Listener {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(command.getName().equalsIgnoreCase("simplesidebar")){
             if(args.length!=0){
-                if(args[0].equalsIgnoreCase("reload")&&sender.hasPermission("simplesidebar.reload")) {
-                    timer.stop();
-                    config.reload();
-                    for (Player player : Bukkit.getOnlinePlayers()) {
-                        createScoreboard(player);
+                if(args[0].equalsIgnoreCase("reload")) {
+                    if(sender.hasPermission("simplesidebar.reload")){
+                        timer.stop();
+                        config.reload();
+                        for (Player player : Bukkit.getOnlinePlayers()) {
+                            createScoreboard(player);
+                        }
+                        timer.start();
+                        sender.sendMessage(pluginName + " has reloaded.");
+                        logger.info(pluginName + " has reloaded.");
+                    }else{
+                        sender.sendMessage("Don't have permission:simplesidebar.reload");
                     }
-                    timer.start();
-                    sender.sendMessage(pluginName + " has reloaded.");
-                    logger.info(pluginName + " has reloaded.");
-                }else{
-                    sender.sendMessage("Don't have permission:simplesidebar.reload");
                 }
             }else {
                 sender.sendMessage("Use \"/simplesidebar reload \"to reload.");
@@ -81,8 +83,9 @@ public class SimpleSidebar extends JavaPlugin implements Listener {
             board.update(type,player);
             player.setScoreboard(board.getScoreboard());
             return true;
+        }else {
+            return false;
         }
-        return false;
     }
     public static boolean updateScoreBoard(Player player){
         Board board = new Board(player);
@@ -91,8 +94,10 @@ public class SimpleSidebar extends JavaPlugin implements Listener {
             board.update(type,player);
             player.setScoreboard(board.getScoreboard());
             return true;
+        }else {
+            player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+            return false;
         }
-        return false;
     }
 
 
