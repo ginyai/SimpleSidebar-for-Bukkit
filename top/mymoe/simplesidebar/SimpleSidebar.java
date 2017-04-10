@@ -7,8 +7,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
 
 import java.util.logging.Logger;
@@ -47,10 +50,10 @@ public class SimpleSidebar extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onLogin(PlayerChangedWorldEvent event) {
-        event.getPlayer().getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+    public void onJoin(PlayerJoinEvent event) {
         createScoreboard(event.getPlayer());
     }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(command.getName().equalsIgnoreCase("simplesidebar")){
