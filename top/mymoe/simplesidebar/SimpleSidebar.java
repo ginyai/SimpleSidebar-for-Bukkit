@@ -95,7 +95,6 @@ public class SimpleSidebar extends JavaPlugin implements Listener {
         String type = config.getType(player);
         if (type != null) {
             board.update(type,player);
-            player.setScoreboard(board.getScoreboard());
             return true;
         }else {
             player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);

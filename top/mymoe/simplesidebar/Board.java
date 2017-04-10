@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by ginya on 2017/3/28.
@@ -39,6 +40,8 @@ public class Board {
         }
     }
     public void setTitle(String title){
+        if(title.length()>32)
+            title=title.substring(0,32);
         this.objective.setDisplayName(title);
     }
     public void update(String type,Player player){
@@ -78,24 +81,17 @@ public class Board {
         }
     }
     public void updateLine(String str, int row) {
-        Line line = new Line(str);
         if (row > 0)
             row *= -1;
-//        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(line.pluginName);
-//        if (!this.scoreboard.getPlayers().contains(offlinePlayer)) {
-        for (OfflinePlayer op : this.scoreboard.getPlayers())
-            if (this.objective.getScore(op).getScore() == row)
-            {
-                this.scoreboard.resetScores(op);
-                if (this.scoreboard.getTeam(op.getName()) != null)
-                    this.scoreboard.getTeam(op.getName()).unregister();
+        Set<String> lines = this.scoreboard.getEntries();
+        for (String  aline : this.scoreboard.getEntries()) {
+            if (this.objective.getScore(aline).getScore() == row) {
+                this.scoreboard.resetScores(aline);
+                if (this.scoreboard.getTeam(aline) != null)
+                    this.scoreboard.getTeam(aline).unregister();
             }
-        addLine(line, row);
-//        }else if (line.suffix!=null&&(this.scoreboard.getPlayerTeam(offlinePlayer)==null||this.scoreboard.getPlayerTeam(offlinePlayer).getPrefix()!=line.suffix)){
-//            this.scoreboard.getPlayerTeam(offlinePlayer).setPrefix(line.suffix);
-//        }else if (line.suffix!=null&&this.scoreboard.getPlayerTeam(offlinePlayer).getSuffix()!=line.suffix){
-//            this.scoreboard.getPlayerTeam(offlinePlayer).setSuffix(line.suffix);
-//        }
+        }
+        addLine(new Line(str), row);
     }
     public Scoreboard getScoreboard()
     {
