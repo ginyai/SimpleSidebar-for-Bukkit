@@ -1,5 +1,5 @@
 name: simplesidebar
-main: top.mymoe.simplesidebar.simplesidebar
+main: top.mymoe.simplesidebar.SimpleSidebar
 version: 1.0
 author: GiNYAi
 description: A simple sidebar plugin
