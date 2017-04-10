@@ -30,7 +30,10 @@ public class SimpleSidebar extends JavaPlugin implements Listener {
         logger = getLogger();
         plugin = this ;
         this.saveDefaultConfig();
-        config = new Config();
+        if(config == null) {
+            config = new Config();
+        }
+        config.reload();
         getServer().getPluginManager().registerEvents(this, this);
         for (Player player:Bukkit.getOnlinePlayers()){
             createScoreboard(player);
