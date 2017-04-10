@@ -1,0 +1,12 @@
+UpdateTime: 20
+Sidebars:
+    A:
+        permission: ''
+        title: title A
+        lines:
+        - 'Sidebar A'
+    B:
+        permission: permission.b
+        title: title B
+        lines:
+        - 'Sidebar B'

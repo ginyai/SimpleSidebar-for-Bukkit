@@ -1,0 +1,22 @@
+name: simplesidebar
+main: top.mymoe.simplesidebar.simplesidebar
+version: 1.0
+author: GiNYAi
+description: A simple sidebar plugin
+depend: [PlaceholderAPI]
+commands:
+  simplesidebar:
+    description: The commands of SimpleSidebar.
+    permission: simplesidebar.command
+permissions:
+    simplesidebar.*:
+        description: Gives access to all SimpleSidebar commands.
+        children:
+            simplesidebar.command: true
+            simplesidebar.reload: true
+    simplesidebar.command:
+        description: Allows you to access SimpleSidebar commands
+        default: op
+    simplesidebar.reload:
+        description: Allows you to reload   SimpleSidebar
+        default: op
