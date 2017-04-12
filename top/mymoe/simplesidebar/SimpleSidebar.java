@@ -6,12 +6,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
 
 import java.util.logging.Logger;
@@ -69,14 +66,14 @@ public class SimpleSidebar extends JavaPlugin implements Listener {
                             createScoreboard(player);
                         }
                         timer.start();
-                        sender.sendMessage(pluginName + " has reloaded.");
-                        logger.info(pluginName + " has reloaded.");
+                        sender.sendMessage(config.getMessage("reloaded"));
+                        logger.info(config.getMessage("reloaded"));
                     }else{
-                        sender.sendMessage("Don't have permission:simplesidebar.reload");
+                        sender.sendMessage(config.getMessage("nopermission"));
                     }
                 }
             }else {
-                sender.sendMessage("Use \"/simplesidebar reload \"to reload.");
+                sender.sendMessage(config.getMessage("usage"));
             }
             return true;
         }
