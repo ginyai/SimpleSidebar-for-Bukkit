@@ -51,7 +51,6 @@ public class Config {
             SimpleSidebar.plugin.saveResource("messages.yml", false);
         }
         messages = YamlConfiguration.loadConfiguration(messagesFile);
-        // Look for defaults in the jar
         Reader defConfigStream = null;
         try {
             defConfigStream = new InputStreamReader(SimpleSidebar.plugin.getResource("messages.yml"), "UTF8");
